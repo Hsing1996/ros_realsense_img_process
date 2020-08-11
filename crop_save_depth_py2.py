@@ -67,9 +67,9 @@ def callback(color_img, depth_img):
 def crop_save(color_img, depth_img):
     k = cv2.waitKey(20)
     if k == ord('s'):
-        cv2.imwrite('/home/ethan251/Desktop/color'+ str(int(time.time)) +'.png', color_img)
-        cv2.imwrite('/home/ethan251/Desktop/depth'+ str(int(time.time)) +'.exr', depth_img)
-        print("Both color and depth images successfully saved.")
+        cv2.imwrite('/home/ethan251/Desktop/color'+ str(int(time.time())) +'.png', color_img)
+        cv2.imwrite('/home/ethan251/Desktop/depth'+ str(int(time.time())) +'.exr', depth_img)
+        print("Both color and depth images at time successfully saved.")
         cv2.destroyAllWindows()
 
 def saveImage():
@@ -83,6 +83,7 @@ def saveImage():
 
     ts = message_filters.TimeSynchronizer([color_img, depth_img], 10)
     ts.registerCallback(callback)
+    # Synchronize time stamps of color and depth images
 
     rospy.spin()
 
